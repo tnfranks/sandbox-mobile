@@ -107,7 +107,7 @@ const MapComponent = (props) => {
     return (
         <LoadScript
             id="script-loader"
-            googleMapsApiKey={process.env.GOOGLE_API_KEY}
+            googleMapsApiKey={'AIzaSyAUHE9Nfip-d0aSKDCSZnuuEauicRkZkBY'}
             language={"en"}
             region={"EN"}
             version={"weekly"}
