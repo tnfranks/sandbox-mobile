@@ -66,7 +66,6 @@ class AppContainerClass extends Component {
     render() {
         let items
         let map
-        console.log(this.state)
         this.state.loading ? items = (<p>Loading...</p>) : items = (<ul>{this.state.locations.map(i => <Location key={i.location_id} locationData={i} />)}</ul>)
         this.state.loading ? map = (<p>Loading...</p>) : map = (<MapComponent locationData={this.state.locations} bounds={this.state.bounds} />)
         return (
