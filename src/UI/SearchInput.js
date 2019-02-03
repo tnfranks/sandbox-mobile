@@ -7,15 +7,15 @@ import { Input } from '../styles/Input'
 
 const SearchInput = (props) => {
     const [searchString, setSearchString] = useState('20132')
-    const [currentLocation, setCurrentLocation] = useState({})
+    // const [currentLocation, setCurrentLocation] = useState({})
 
-    navigator.geolocation.getCurrentPosition(pos => {
-        setCurrentLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude })
-    })
+    // navigator.geolocation.getCurrentPosition(pos => {
+    //     setCurrentLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude })
+    // })
 
-    useEffect(() => {
-        setSearchString(`${currentLocation.lat}, ${currentLocation.lng}`)
-    }, [currentLocation])
+    // useEffect(() => {
+    //     setSearchString(`${currentLocation.lat}, ${currentLocation.lng}`)
+    // }, [currentLocation])
 
     const onChangeHandler = (e) => {
         setSearchString(e.target.value)
