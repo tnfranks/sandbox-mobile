@@ -45,7 +45,7 @@ class AppContainerClass extends Component {
             loading: true,
             search: searchString
         }, () => {
-            axios.get(`http://moonmen-server.herokuapp.com/pgsearch/${this.state.search}?radius=10`)
+            axios.get(`https://moonmen-server.herokuapp.com/pgsearch/${this.state.search}?radius=10`)
                 .then(data => {
                     const calculatedBounds = createBounds(data.data.result.data)
                     return {
