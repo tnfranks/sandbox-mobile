@@ -3,7 +3,7 @@ import '@babel/polyfill'
 import axios from 'axios'
 
 import MapComponent from '../Map/MapComponent'
-import { Main } from '../styles/Main'
+import { Main, ListContainer, List } from '../styles/Main'
 import Location from './Location'
 import SearchInput from '../UI/SearchInput'
 
@@ -46,7 +46,7 @@ class AppContainerClass extends Component {
     render() {
         let items
         let map
-        this.state.loading ? items = (<p>Loading...</p>) : items = (<ul>{this.state.locations.map(i => <Location key={i.location_id} locationData={i} />)}</ul>)
+        this.state.loading ? items = (<p>Loading...</p>) : items = this.state.locations.map(i => <Location key={i.location_id} locationData={i} />)
         this.state.loading ? map = (<p>Loading...</p>) : map = (<MapComponent locationData={this.state.locations} bounds={this.state.bounds} />)
         return (
             <Main>
@@ -54,10 +54,10 @@ class AppContainerClass extends Component {
                     <SearchInput onSearchSubmit={this.onSearchSubmit} />
                 </div>
                 {map}
-                <div style={{ height: '100%', backgroundColor: '#242f3e', color: 'white', overflow: 'auto' }}>
-                    {items}
-                    <div style={{ backgroundColor: 'steelblue', color: 'white' }}>Footer</div>
-                </div>
+                <ListContainer>
+                    <List>{items}</List>
+                    <footer style={{ backgroundColor: 'steelblue', color: 'white' }}>Footer</footer>
+                </ListContainer>
             </Main>
         )
     }
