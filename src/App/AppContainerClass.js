@@ -3,7 +3,7 @@ import '@babel/polyfill'
 import axios from 'axios'
 
 import MapComponent from '../Map/MapComponent'
-import { Main, ListContainer, List } from '../styles/Main'
+import { MapButton, Main, ListContainer, List } from '../styles/Main'
 import Location from './Location'
 import SearchInput from '../UI/SearchInput'
 
@@ -17,7 +17,15 @@ class AppContainerClass extends Component {
         searchCoords: {
             lat: 0,
             lng: 0
-        }
+        },
+        showMap: false
+    }
+
+    onToggleMap = (e) => {
+        this.setState((prevState) => ({
+            showMap: !prevState.showMap
+        }))
+        console.log(e)
     }
 
     onSearchSubmit = (searchString) => {
@@ -44,20 +52,25 @@ class AppContainerClass extends Component {
     }
 
     render() {
-        let items
-        let map
-        this.state.loading ? items = (<p>Loading...</p>) : items = this.state.locations.map(i => <Location key={i.location_id} locationData={i} />)
-        this.state.loading ? map = (<p>Loading...</p>) : map = (<MapComponent locationData={this.state.locations} bounds={this.state.bounds} />)
+        const items = this.state.loading ? (<p>Loading...</p>) : this.state.locations.map(i => <Location key={i.location_id} locationData={i} />)
+        const map = this.state.loading ? (<p>Loading...</p>) : (<MapComponent locationData={this.state.locations} bounds={this.state.bounds} />)
+        const container = this.state.showMap
+            ? map
+            : (
+                <ListContainer>
+                    <List>{items}</List>
+                    <footer style={{ backgroundColor: 'steelblue', color: 'white' }}>Footer</footer>
+                </ListContainer>
+            )
         return (
             <Main>
                 <div>
                     <SearchInput onSearchSubmit={this.onSearchSubmit} />
                 </div>
-                <div class="filter">Filter</div>
-                <ListContainer>
-                    <List>{items}</List>
-                    <footer style={{ backgroundColor: 'steelblue', color: 'white' }}>Footer</footer>
-                </ListContainer>
+                <div className='map-button'>
+                    <MapButton type='button' value={this.state.showMap} onClick={this.onToggleMap}>{this.state.showMap ? 'LIST' : 'MAP'}</MapButton>
+                </div>
+                {container}
             </Main>
         )
     }

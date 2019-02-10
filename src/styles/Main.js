@@ -6,6 +6,10 @@ export const Main = styled.main`
     padding: 2rem;
     display: grid;
     grid-template-rows: 4rem 4rem calc(100vh - 12rem);
+
+    .map-button {
+        cursor: pointer;
+    }
 `
 
 export const ListContainer = styled.div`
@@ -21,4 +25,11 @@ export const List = styled.div`
     
     grid-template-columns: 1fr 1fr;
     grid-gap: 4rem 2rem;
+`
+
+export const MapButton = styled.button`
+    height: 80%;
+    width: 5rem;
+    border: none;
+    cursor: pointer;
 `

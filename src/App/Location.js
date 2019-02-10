@@ -30,11 +30,11 @@ const Location = (props) => {
 
     return (
         <Card>
-            <figure class="logo"><img src={locationData.brewery.images.image_large} />
+            <figure className="logo"><img src={locationData.brewery.images.image_large} />
             </figure>
-            <div class="header">
+            <div className="header">
                     <h5>{locationData.brewery.brewery_name}</h5>
-                <div class="location-type">{locationData.location_type_display}</div>
+                <div className="location-type">{locationData.location_type_display}</div>
             </div>
         </Card>
     )
