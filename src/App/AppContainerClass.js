@@ -50,7 +50,7 @@ class AppContainerClass extends Component {
         this.state.loading ? map = (<p>Loading...</p>) : map = (<MapComponent locationData={this.state.locations} bounds={this.state.bounds} />)
         return (
             <Main>
-                <div style={{ paddingLeft: '.5rem', paddingTop: '.5rem', height: '100%', backgroundColor: '#242f3e' }}>
+                <div>
                     <SearchInput onSearchSubmit={this.onSearchSubmit} />
                 </div>
                 <div class="filter">Filter</div>

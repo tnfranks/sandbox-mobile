@@ -3,12 +3,9 @@ import styled from 'styled-components'
 export const Main = styled.main`
     background-color: #242f3e;
     color: #fff;
+    padding: 2rem;
     display: grid;
-    grid-template-rows: 40px 40px calc(100vh - 80px);
-
-    .filter {
-        padding-left: 2rem;
-    }
+    grid-template-rows: 4rem 4rem calc(100vh - 12rem);
 `
 
 export const ListContainer = styled.div`
@@ -17,9 +14,9 @@ export const ListContainer = styled.div`
     overflow: auto;
 
     grid-template-rows: 1fr 1fr;
+    grid-row-gap: 2rem;
 `
 export const List = styled.div`
-    padding: 2rem;
     display: grid;
     
     grid-template-columns: 1fr 1fr;
