@@ -31,14 +31,12 @@ const Card = styled.div`
 const Location = (props) => {
     const { locationData } = props
 
-    const breweryImage = locationData.brewery.images.images_large === null ? (<div />) : (<img src={locationData.brewery.images.image_large_square} alt="brewery logo" />)
-
     return (
         <Card>
-            <figure className="logo"><img src={locationData.brewery.images.image_large} />
+            <figure className="logo"><img src={locationData.brewery.images.image_large} alt='brewery logo' />
             </figure>
             <div className="header">
-                    <h5><a href={locationData.website} target='_blank'>{locationData.brewery.brewery_name}</a></h5>
+                    <h5><a href={locationData.website} target='_blank' rel='noopener noreferrer'>{locationData.brewery.brewery_name}</a></h5>
                 <div className="location-type">{locationData.location_type_display}</div>
             </div>
         </Card>

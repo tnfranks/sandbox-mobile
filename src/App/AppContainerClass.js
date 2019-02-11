@@ -25,7 +25,6 @@ class AppContainerClass extends Component {
         this.setState((prevState) => ({
             showMap: !prevState.showMap
         }))
-        console.log(e)
     }
 
     onSearchSubmit = (searchString) => {
