@@ -13,6 +13,11 @@ const Card = styled.div`
         object-fit: cover;
         display: block;
     }
+    
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 
     .header {
         padding-left: .5rem;
@@ -33,7 +38,7 @@ const Location = (props) => {
             <figure className="logo"><img src={locationData.brewery.images.image_large} />
             </figure>
             <div className="header">
-                    <h5>{locationData.brewery.brewery_name}</h5>
+                    <h5><a href={locationData.website} target='_blank'>{locationData.brewery.brewery_name}</a></h5>
                 <div className="location-type">{locationData.location_type_display}</div>
             </div>
         </Card>

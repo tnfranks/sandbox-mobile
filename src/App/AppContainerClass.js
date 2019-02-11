@@ -5,7 +5,7 @@ import axios from 'axios'
 import MapComponent from '../Map/MapComponent'
 import { MapButton, Main, ListContainer, List } from '../styles/Main'
 import Location from './Location'
-import SearchInput from '../UI/SearchInput'
+import Search from '../UI/Search'
 
 
 class AppContainerClass extends Component {
@@ -64,9 +64,7 @@ class AppContainerClass extends Component {
             )
         return (
             <Main>
-                <div>
-                    <SearchInput onSearchSubmit={this.onSearchSubmit} />
-                </div>
+                <Search onSearchSubmit={this.onSearchSubmit} />
                 <div className='map-button'>
                     <MapButton type='button' value={this.state.showMap} onClick={this.onToggleMap}>{this.state.showMap ? 'LIST' : 'MAP'}</MapButton>
                 </div>
