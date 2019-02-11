@@ -19,6 +19,10 @@ const Card = styled.div`
         text-decoration: none;
     }
 
+    .logo {
+        background-color: #fff;
+    }
+
     .header {
         padding-left: .5rem;
     }
@@ -33,7 +37,7 @@ const Location = (props) => {
 
     return (
         <Card>
-            <figure className="logo"><img src={locationData.brewery.images.image_large} alt='brewery logo' />
+            <figure className="logo"><img src={locationData.brewery.images.image_large || 'http://www.alesandmeads.com/wp-content/uploads/2015/12/url.png'} alt='brewery logo' />
             </figure>
             <div className="header">
                     <h5><a href={locationData.website} target='_blank' rel='noopener noreferrer'>{locationData.brewery.brewery_name}</a></h5>
