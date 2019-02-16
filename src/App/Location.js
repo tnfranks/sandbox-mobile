@@ -36,12 +36,17 @@ const Card = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+
+        &-icons {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     .flip-toggle {
         position: absolute;
-        left: 14rem;
-        top: 13rem;
+        bottom: 1rem;
+        right: 1rem;
         height: 1rem;
         width: 1rem;
         background: red;
@@ -59,8 +64,8 @@ const Card = styled.div`
 const Back = (props) => {
     return (
         <div className='card-back'>
-            <div>ICONS</div>
-            <div className='flip-toggle' onClick={props.onCardFlip} />
+            <div className='card-back-icons'><button type='button'>ICON</button></div>
+            <div className='flip-toggle' onClick={() => props.onCardFlip(props.locationData.location_id)} />
         </div>
     )
 }
@@ -71,7 +76,7 @@ const Front = (props) => {
             <figure className='card-front-icon'>
                 <img src={props.locationData.brewery.images.image_large || 'http://www.alesandmeads.com/wp-content/uploads/2015/12/url.png'} alt='brewery logo' />
             </figure>
-            <div className='flip-toggle' onClick={props.onCardFlip} />
+            <div className='flip-toggle' onClick={() => props.onCardFlip(props.locationData.location_id)} />
         </div>
     )
 }
@@ -85,11 +90,12 @@ const Location = (props) => {
         setFlipped(!flipped)
     }
 
-    const cardFace = flipped ? <Back locationData={locationData} onCardFlip={onCardClick} /> : <Front locationData={locationData} onCardFlip={onCardClick} />
+    // const cardFace = flipped ? <Back locationData={locationData} onCardFlip={onCardClick} /> : <Front locationData={locationData} onCardFlip={onCardClick} />
 
     return (
         <Card>
-            {cardFace}
+            {flipped && (<Back locationData={locationData} onCardFlip={props.showLocationDetail} />)}
+            {!flipped && (<Front locationData={locationData} onCardFlip={props.showLocationDetail} />)}
             <div className="header">
                 <h5><a href={locationData.website} target='_blank' rel='noopener noreferrer'>{locationData.brewery.brewery_name}</a></h5>
                 <div className="location-type">{locationData.location_type_display}</div>

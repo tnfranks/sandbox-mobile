@@ -3,7 +3,7 @@ import '@babel/polyfill'
 import axios from 'axios'
 
 import MapComponent from '../Map/MapComponent'
-import { MapButton, Main, ListContainer, List } from '../styles/Main'
+import { MapButton, Main, ListContainer, List, LocationDetail, Footer } from '../styles/Main'
 import Location from './Location'
 import Search from '../UI/Search'
 
@@ -18,13 +18,32 @@ class AppContainerClass extends Component {
             lat: 0,
             lng: 0
         },
-        showMap: false
+        showMap: false,
+        showLocation: false,
+        showLocationId: ''
     }
 
     onToggleMap = (e) => {
         this.setState((prevState) => ({
+            showLocation: false,
+            showLocationId: '',
             showMap: !prevState.showMap
         }))
+    }
+
+    onShowLocation = (location_id) => {
+        this.setState({
+            showLocation: true,
+            showLocationId: location_id
+        })
+    }
+
+    onCloseLocation = (e) => {
+        e.preventDefault()
+        this.setState({
+            showLocation: false,
+            showLocationId: ''
+        })
     }
 
     onSearchSubmit = (searchString) => {
@@ -51,23 +70,28 @@ class AppContainerClass extends Component {
     }
 
     render() {
-        const items = this.state.loading ? (<p>Loading...</p>) : this.state.locations.map(i => <Location key={i.location_id} locationData={i} />)
-        const map = this.state.loading ? (<p>Loading...</p>) : (<MapComponent locationData={this.state.locations} bounds={this.state.bounds} />)
-        const container = this.state.showMap
-            ? map
-            : (
-                <ListContainer>
-                    <List>{items}</List>
-                    <footer style={{ backgroundColor: 'steelblue', color: 'white' }}>Footer</footer>
-                </ListContainer>
-            )
+        const items = this.state.loading
+            ? (<p>Loading...</p>)
+            : this.state.locations.map(i => <Location key={i.location_id} locationData={i} showLocationDetail={this.onShowLocation} />)
+
+        const map = this.state.loading
+            ? (<p>Loading...</p>)
+            : (<MapComponent locationData={this.state.locations} bounds={this.state.bounds} />)
+
         return (
             <Main>
                 <Search onSearchSubmit={this.onSearchSubmit} />
                 <div className='map-button'>
                     <MapButton type='button' value={this.state.showMap} onClick={this.onToggleMap}>{this.state.showMap ? 'LIST' : 'MAP'}</MapButton>
                 </div>
-                {container}
+                {this.state.showMap && !this.state.showLocation && map}
+                {!this.state.showMap && !this.state.showLocation && (
+                    <ListContainer>
+                        <List>{items}</List>
+                        <Footer>Footer</Footer>
+                    </ListContainer>
+                )}
+                {this.state.showLocation && <LocationDetail onClick={this.onCloseLocation} />}
             </Main>
         )
     }
