@@ -80,7 +80,3 @@ export const Footer = styled.footer`
     background-color: #4682b4;
     color: #fff
 `
-
-export const LocationDetail = styled.div`
-    background-color: #4682b4;
-`

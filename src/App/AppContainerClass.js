@@ -3,8 +3,9 @@ import '@babel/polyfill'
 import axios from 'axios'
 
 import MapComponent from '../Map/MapComponent'
-import { MapButton, Main, ListContainer, List, LocationDetail, Footer } from '../styles/Main'
+import { MapButton, Main, ListContainer, List, Footer } from '../styles/Main'
 import Location from './Location'
+import LocationDetail from './LocationDetail'
 import Search from '../UI/Search'
 
 
@@ -49,7 +50,9 @@ class AppContainerClass extends Component {
     onSearchSubmit = (searchString) => {
         this.setState({
             loading: true,
-            search: searchString
+            search: searchString,
+            showLocation: false,
+            showLocationId: ''
         }, () => {
             axios.get(`https://moonmen-server.herokuapp.com/pgsearch/${this.state.search}?radius=10`)
                 .then(data => {
@@ -85,13 +88,15 @@ class AppContainerClass extends Component {
                     <MapButton type='button' value={this.state.showMap} onClick={this.onToggleMap}>{this.state.showMap ? 'LIST' : 'MAP'}</MapButton>
                 </div>
                 {this.state.showMap && !this.state.showLocation && map}
-                {!this.state.showMap && !this.state.showLocation && (
-                    <ListContainer>
-                        <List>{items}</List>
-                        <Footer>Footer</Footer>
-                    </ListContainer>
+                {!this.state.showMap && (
+                    <>
+                        <ListContainer>
+                            <List>{items}</List>
+                            <Footer>Footer</Footer>
+                        </ListContainer>
+                        <LocationDetail show={this.state.showLocation} onClose={this.onCloseLocation} />
+                    </>
                 )}
-                {this.state.showLocation && <LocationDetail onClick={this.onCloseLocation} />}
             </Main>
         )
     }
