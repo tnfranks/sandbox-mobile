@@ -9,6 +9,24 @@ const LocationDetailStyled = styled.div`
     overflow: auto;
     transition: all .2s ease-out;
     transform: ${props => props.show ? `translateY(0)` : `translateY(100vh)`};
+
+    .photos {
+        /* Prevent vertical gaps */
+        line-height: 0;
+        
+        -webkit-column-count: 2;
+        -webkit-column-gap:   0px;
+        -moz-column-count:    5;
+        -moz-column-gap:      0px;
+        column-count:         2;
+        column-gap:           0px;
+    }
+
+    .photos img {
+        /* Just in case there are inline attributes */
+        width: 100% !important;
+        height: auto !important;
+    }
 `
 
 const LocationDetail = (props) => {
@@ -24,7 +42,7 @@ const LocationDetail = (props) => {
         ? <div>Loading...</div>
         : location.moonmenStatus === 'REJECT'
             ? <div>Location info not available</div>
-            : <div><div>Name: {location.name}</div><div>{photos}</div></div>
+            : <div><div>{location.name}</div><div className='photos'>{photos}</div></div>
 
 
     return (
