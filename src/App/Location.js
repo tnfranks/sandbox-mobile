@@ -62,21 +62,23 @@ const Card = styled.div`
 `
 
 const Back = (props) => {
+    const { locationData, onCardFlip } = props
     return (
         <div className='card-back'>
             <div className='card-back-icons'><button type='button'>ICON</button></div>
-            <div className='flip-toggle' onClick={() => props.onCardFlip(props.locationData.location_id)} />
+            <div className='flip-toggle' onClick={() => onCardFlip({id: locationData.location_id, name: locationData.location.brewery.brewery_name, lat: locationData.latitude, lng: locationData.longitude})} />
         </div>
     )
 }
 
 const Front = (props) => {
+    const { locationData, onCardFlip } = props
     return (
         <div className='card-front'>
             <figure className='card-front-icon'>
-                <img src={props.locationData.brewery.images.image_large || 'http://www.alesandmeads.com/wp-content/uploads/2015/12/url.png'} alt='brewery logo' />
+                <img src={locationData.brewery.images.image_large || 'http://www.alesandmeads.com/wp-content/uploads/2015/12/url.png'} alt='brewery logo' />
             </figure>
-            <div className='flip-toggle' onClick={() => props.onCardFlip(props.locationData.location_id)} />
+            <div className='flip-toggle' onClick={() => onCardFlip({id: locationData.location_id, name: locationData.brewery.brewery_name, lat: locationData.latitude, lng: locationData.longitude})} />
         </div>
     )
 }
@@ -89,7 +91,6 @@ const Location = (props) => {
         e.preventDefault()
         setFlipped(!flipped)
     }
-
     // const cardFace = flipped ? <Back locationData={locationData} onCardFlip={onCardClick} /> : <Front locationData={locationData} onCardFlip={onCardClick} />
 
     return (

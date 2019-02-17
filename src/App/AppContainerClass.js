@@ -21,7 +21,8 @@ class AppContainerClass extends Component {
         },
         showMap: false,
         showLocation: false,
-        showLocationId: ''
+        showLocationId: '',
+        locationData: {}
     }
 
     onToggleMap = (e) => {
@@ -32,10 +33,18 @@ class AppContainerClass extends Component {
         }))
     }
 
-    onShowLocation = (location_id) => {
+    onShowLocation = ({ id, name, lat, lng}) => {
         this.setState({
             showLocation: true,
-            showLocationId: location_id
+            showLocationId: id,
+            locationData: {}
+        }, () => {
+            axios.get(`https://moonmen-server.herokuapp.com/place/${name}/${lat};${lng}`)
+                .then(data => {
+                    this.setState({
+                        locationData: data.data
+                    })
+                })
         })
     }
 
@@ -94,7 +103,7 @@ class AppContainerClass extends Component {
                             <List>{items}</List>
                             <Footer>Footer</Footer>
                         </ListContainer>
-                        <LocationDetail show={this.state.showLocation} onClose={this.onCloseLocation} />
+                        <LocationDetail show={this.state.showLocation} onClose={this.onCloseLocation} location={this.state.locationData} />
                     </>
                 )}
             </Main>
