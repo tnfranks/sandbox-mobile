@@ -44,16 +44,22 @@ const Card = styled.div`
     }
 
     .flip-toggle {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        height: 1rem;
-        width: 1rem;
-        background: red;
+        height: 2rem;
+        width: 8rem;
+        background: none;
+        background-color: #4682b4;
+        color: inherit;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
     }
 
     .header {
-        padding-left: .5rem;
+        padding: .5rem;
+    }
+
+    .location-title {
+        font-size: 1.3rem;
     }
 
     .location-type {
@@ -66,28 +72,27 @@ const Back = (props) => {
     return (
         <div className='card-back'>
             <div className='card-back-icons'><button type='button'>ICON</button></div>
-            <div className='flip-toggle' onClick={() => onCardFlip({id: locationData.location_id, name: locationData.location.brewery.brewery_name, lat: locationData.latitude, lng: locationData.longitude})} />
+            <div className='flip-toggle' onClick={() => onCardFlip({ id: locationData.location_id, name: locationData.location.brewery.brewery_name, lat: locationData.latitude, lng: locationData.longitude })} />
         </div>
     )
 }
 
 const Front = (props) => {
-    const { locationData, onCardFlip } = props
+    const { locationData } = props
     return (
         <div className='card-front'>
             <figure className='card-front-icon'>
                 <img src={locationData.brewery.images.image_large || 'http://www.alesandmeads.com/wp-content/uploads/2015/12/url.png'} alt='brewery logo' />
             </figure>
-            <div className='flip-toggle' onClick={() => onCardFlip({id: locationData.location_id, name: locationData.brewery.brewery_name, lat: locationData.latitude, lng: locationData.longitude})} />
         </div>
     )
 }
 
 const Location = (props) => {
-    const { locationData } = props
+    const { locationData, showLocationDetail } = props
     const [flipped, setFlipped] = useState(false)
 
-    const onCardClick = (e) => {
+    const onCardivdClick = (e) => {
         e.preventDefault()
         setFlipped(!flipped)
     }
@@ -98,8 +103,13 @@ const Location = (props) => {
             {flipped && (<Back locationData={locationData} onCardFlip={props.showLocationDetail} />)}
             {!flipped && (<Front locationData={locationData} onCardFlip={props.showLocationDetail} />)}
             <div className="header">
-                <h5><a href={locationData.website} target='_blank' rel='noopener noreferrer'>{locationData.brewery.brewery_name}</a></h5>
+                <p className='location-title'><a href={locationData.website} target='_blank' rel='noopener noreferrer'>{locationData.brewery.brewery_name}</a></p>
                 <div className="location-type">{locationData.location_type_display}</div>
+                <button
+                    className='flip-toggle'
+                    onClick={() => showLocationDetail({ id: locationData.location_id, name: locationData.brewery.brewery_name, lat: locationData.latitude, lng: locationData.longitude })}>
+                    DETAILS
+                </button>
             </div>
         </Card>
     )

@@ -39,7 +39,8 @@ class AppContainerClass extends Component {
             showLocationId: id,
             locationData: {}
         }, () => {
-            axios.get(`https://moonmen-server.herokuapp.com/place/${name}/${lat};${lng}`)
+            const cleansedName = name.includes('/') ? name.slice(0, name.indexOf('/')) : name
+            axios.get(`https://moonmen-server.herokuapp.com/place/${cleansedName}/${lat};${lng}`)
                 .then(data => {
                     this.setState({
                         locationData: data.data
