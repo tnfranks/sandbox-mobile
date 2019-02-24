@@ -23,9 +23,9 @@ const SearchInput = (props) => {
     return (
         <SearchDiv>
             <input type="text" value={searchString} onChange={onChangeHandler} />
-            <button style={{backgroundColor: 'white', border: 'none'}} type="button" onClick={onSearchClick}>
+            <button type="button" onClick={onSearchClick}>
                 <Icon
-                    color='#777'
+                    color='#eee'
                     height='2rem'
                     width='2rem'
                     clicked={searchClicked}

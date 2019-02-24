@@ -51,7 +51,8 @@ export const SearchDiv = styled.div`
     align-items: center;
 
     input {
-        color: #777;
+        background-color: rgb(255, 255, 255, .05);
+        color: #eee;
         border: none;
         padding: .5rem;
         height: 90%;
@@ -67,16 +68,11 @@ export const SearchDiv = styled.div`
         border: none;
         height: 90%;
         width: 15%;
-        background-color: #fff;
+        background-color: #2d3b4f;
 
         :focus {
             outline: none;
         }
     }
 
-`
-
-export const Footer = styled.footer`
-    background-color: #4682b4;
-    color: #fff
 `

@@ -3,10 +3,11 @@ import '@babel/polyfill'
 import axios from 'axios'
 
 import MapComponent from '../Map/MapComponent'
-import { MapButton, Main, ListContainer, List, Footer } from '../styles/Main'
+import { MapButton, Main, ListContainer, List } from '../styles/Main'
 import Location from './Location'
 import LocationDetail from './LocationDetail'
 import Search from '../UI/Search'
+import Footer from './Footer'
 
 
 class AppContainerClass extends Component {
@@ -102,7 +103,7 @@ class AppContainerClass extends Component {
                     <>
                         <ListContainer>
                             <List>{items}</List>
-                            <Footer>Footer</Footer>
+                            <Footer />
                         </ListContainer>
                         <LocationDetail show={this.state.showLocation} onClose={this.onCloseLocation} location={this.state.locationData} />
                     </>

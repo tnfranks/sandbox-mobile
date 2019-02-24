@@ -3,9 +3,9 @@ import styled from 'styled-components'
 
 const Card = styled.div`
     font-size: 1.6rem;
-    border: 1px solid white;
+    border: none;
     display: grid;
-    grid-template-rows: 15rem 1fr;
+    grid-template-rows: 15rem 1fr 3rem;
 
     img {
         width: 100%;
@@ -44,10 +44,8 @@ const Card = styled.div`
     }
 
     .flip-toggle {
-        height: 2rem;
-        width: 8rem;
         background: none;
-        background-color: #4682b4;
+        background-color: #c69963;
         color: inherit;
         border: none;
         font-size: 1.2rem;
@@ -56,6 +54,7 @@ const Card = styled.div`
 
     .header {
         padding: .5rem;
+        background-color: rgba(255, 255, 255, .1)
     }
 
     .location-title {
@@ -105,12 +104,12 @@ const Location = (props) => {
             <div className="header">
                 <p className='location-title'><a href={locationData.website} target='_blank' rel='noopener noreferrer'>{locationData.brewery.brewery_name}</a></p>
                 <div className="location-type">{locationData.location_type_display}</div>
-                <button
-                    className='flip-toggle'
-                    onClick={() => showLocationDetail({ id: locationData.location_id, name: locationData.brewery.brewery_name, lat: locationData.latitude, lng: locationData.longitude })}>
-                    DETAILS
-                </button>
             </div>
+            <button
+                className='flip-toggle'
+                onClick={() => showLocationDetail({ id: locationData.location_id, name: locationData.brewery.brewery_name, lat: locationData.latitude, lng: locationData.longitude })}>
+                DETAILS
+            </button>
         </Card>
     )
 }
