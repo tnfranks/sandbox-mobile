@@ -5,8 +5,8 @@ const LocationDetailStyled = styled.div`
     position: fixed;
     height: calc(100% - 4rem);
     width: calc(100% - 4rem);
-    border: 1px solid #eee;
-    background-color: #242f3e;
+    border: none;
+    background-color: #2f3a48;
     padding: 1rem;
     overflow: auto;
     transition: all .2s ease-out;
