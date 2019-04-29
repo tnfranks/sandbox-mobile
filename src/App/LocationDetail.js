@@ -5,7 +5,7 @@ const LocationDetailStyled = styled.div`
     position: fixed;
     height: calc(100% - 4rem);
     width: calc(100% - 4rem);
-    border: none;
+    border: solid 1px #2f3a48;
     background-color: #2f3a48;
     padding: 1rem;
     overflow: auto;
@@ -17,11 +17,11 @@ const LocationDetailStyled = styled.div`
         line-height: 0;
         
         -webkit-column-count: 2;
-        -webkit-column-gap:   0px;
-        -moz-column-count:    5;
-        -moz-column-gap:      0px;
-        column-count:         2;
-        column-gap:           0px;
+        -webkit-column-gap: 0px;
+        -moz-column-count: 5;
+        -moz-column-gap: 0px;
+        column-count: 2;
+        column-gap: 0px;
     }
 
     .photos img {

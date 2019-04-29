@@ -29,7 +29,7 @@ export const ListContainer = styled.div`
 export const List = styled.div`
     display: grid;
     
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     grid-gap: 4rem 2rem;
 `
 
