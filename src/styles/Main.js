@@ -30,6 +30,7 @@ export const List = styled.div`
     display: grid;
     
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-auto-rows: minmax(auto, 25rem);
     grid-gap: 4rem 2rem;
 `
 
